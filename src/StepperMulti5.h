@@ -128,7 +128,7 @@ class StepperMulti5 {
 
     unsigned long last_step_time; // time stamp in us of when the last step was taken
 
-	//스템 저장
+	//스텝 저장
 	int steps_left;
 };
 
