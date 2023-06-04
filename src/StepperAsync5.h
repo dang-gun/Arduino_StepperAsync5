@@ -1,12 +1,17 @@
-/*
-  StepperMulti5.h
-  ( http://blog.danggun.net/2092 )
+ï»¿/*
+  StepperAsync5.h
+  (http://blog.danggun.net/11146)
 
-  ÀÌ ¶óÀÌºê·¯¸®´Â ¾ÆµÎÀÌ³ëÀÇ 'Stepper.h'¸¦ °³Á¶ÇÑ ¶óÀÌºê·¯¸®ÀÔ´Ï´Ù.
-  (Stepper.h : http://arduino.cc/en/reference/stepper )
-  ¸ğµç ³»¿ëÀº 'Stepper.h'¿Í °ÅÀÇ µ¿ÀÏÇÕ´Ï´Ù.
-  (1.1.0¹öÀü ±âÁØ)
+  ì´ ë¼ì´ë¸ŒëŸ¬ë¦¬ëŠ” ì•„ë‘ì´ë…¸ì˜ 'Stepper.h'ë¥¼ ê°œì¡°í•œ ë¼ì´ë¸ŒëŸ¬ë¦¬ì…ë‹ˆë‹¤.
+  (Stepper.h : https://www.arduino.cc/reference/en/libraries/stepper/)
+  (ì›ë³¸ ì†ŒìŠ¤ https://github.com/arduino-libraries/Stepper)
+  
+  ëª¨ë“  ë‚´ìš©ì€ 'Stepper.h'ì™€ ê±°ì˜ ë™ì¼í•©ë‹ˆë‹¤.
+  (1.1.3ë²„ì „ ê¸°ì¤€)
+
+  ë¼ì´ì„ ìŠ¤ëŠ” 'Stepper'ë¥¼ ë”°ë¼ ê°‘ë‹ˆë‹¤.
 */
+
 
 /*
  * Stepper.h - Stepper library for Wiring/Arduino - Version 1.1.0
@@ -44,9 +49,9 @@
  * reduced from 4 to 2 for the unipolar and bipolar motors.
  *
  * A slightly modified circuit around a Darlington transistor array or an
- * L293 H-bridge connects to only 2 microcontroler pins, inverts the signals
+ * L293 H-bridge connects to only 2 microcontroller pins, inverts the signals
  * received, and delivers the 4 (2 plus 2 inverted ones) output signals
- * required for driving a stepper motor. Similarly the Arduino motor shields
+ * required for driving a stepper motor. Similarly the Arduino motor shield's
  * 2 direction pins may be used.
  *
  * The sequence of control signals for 5 phase, 5 control wires is as follows:
@@ -71,7 +76,7 @@
  *    3  0  1  0  1
  *    4  1  0  0  1
  *
- * The sequence of controls signals for 2 control wires is as follows
+ * The sequence of control signals for 2 control wires is as follows
  * (columns C1 and C2 from above):
  *
  * Step C0 C1
@@ -82,31 +87,32 @@
  *
  * The circuits can be found at
  *
- * http://www.arduino.cc/en/Tutorial/Stepper
+ * https://docs.arduino.cc/learn/electronics/stepper-motors#circuit
  */
 
 // ensure this library description is only included once
-#ifndef StepperMulti5_h
-#define StepperMulti5_h
+#ifndef StepperAsync5_h
+#define StepperAsync5_h
 
 // library interface description
-class StepperMulti5 {
+class StepperAsync5 
+{
   public:
     // constructors:
-    StepperMulti5(int number_of_steps, int motor_pin_1, int motor_pin_2);
-	StepperMulti5(int number_of_steps, int motor_pin_1, int motor_pin_2,
-								        int motor_pin_3, int motor_pin_4);
-	StepperMulti5(int number_of_steps, int motor_pin_1, int motor_pin_2,
-                                        int motor_pin_3, int motor_pin_4,
-                                        int motor_pin_5);
+    StepperAsync5(int number_of_steps, int motor_pin_1, int motor_pin_2);
+    StepperAsync5(int number_of_steps, int motor_pin_1, int motor_pin_2,
+                          int motor_pin_3, int motor_pin_4);
+    StepperAsync5(int number_of_steps, int motor_pin_1, int motor_pin_2,
+                                          int motor_pin_3, int motor_pin_4,
+                                          int motor_pin_5);
 
     // speed setter method:
     void setSpeed(long whatSpeed);
 
     // mover method:
     void setStep(int number_of_steps);
-	//'loop()'¾È¿¡¼­ ÀÌ ¸Ş¼Òµå¸¦ È£ÃâÇØ¾ß ÇÑ´Ù.
-	void moveStep();
+	  //'loop()'ì•ˆì—ì„œ ì´ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•´ì•¼ í•œë‹¤.
+    void moveStep();
 
     int version(void);
 
@@ -128,7 +134,7 @@ class StepperMulti5 {
 
     unsigned long last_step_time; // time stamp in us of when the last step was taken
 
-	//½ºÅÜ ÀúÀå
+	//ìŠ¤í… ì €ì¥
 	int steps_left;
 };
 

@@ -1,11 +1,15 @@
-/*
-  StepperMulti5.h
-  ( http://blog.danggun.net/2092 )
+ï»¿/*
+  StepperAsync5.h
+  (http://blog.danggun.net/11146)
 
-  ÀÌ ¶óÀÌºê·¯¸®´Â ¾ÆµÎÀÌ³ëÀÇ 'Stepper.h'¸¦ °³Á¶ÇÑ ¶óÀÌºê·¯¸®ÀÔ´Ï´Ù.
-  (Stepper.h : http://arduino.cc/en/reference/stepper )
-  ¸ðµç ³»¿ëÀº 'Stepper.h'¿Í °ÅÀÇ µ¿ÀÏÇÕ´Ï´Ù.
-  (1.1.0¹öÀü ±âÁØ)
+  ì´ ë¼ì´ë¸ŒëŸ¬ë¦¬ëŠ” ì•„ë‘ì´ë…¸ì˜ 'Stepper.h'ë¥¼ ê°œì¡°í•œ ë¼ì´ë¸ŒëŸ¬ë¦¬ìž…ë‹ˆë‹¤.
+  (Stepper.h : https://www.arduino.cc/reference/en/libraries/stepper/)
+  (ì›ë³¸ ì†ŒìŠ¤ https://github.com/arduino-libraries/Stepper)
+  
+  ëª¨ë“  ë‚´ìš©ì€ 'Stepper.h'ì™€ ê±°ì˜ ë™ì¼í•©ë‹ˆë‹¤.
+  (1.1.3ë²„ì „ ê¸°ì¤€)
+
+  ë¼ì´ì„ ìŠ¤ëŠ” 'Stepper'ë¥¼ ë”°ë¼ ê°‘ë‹ˆë‹¤.
 */
 
 /*
@@ -44,9 +48,9 @@
  * reduced from 4 to 2 for the unipolar and bipolar motors.
  *
  * A slightly modified circuit around a Darlington transistor array or an
- * L293 H-bridge connects to only 2 microcontroler pins, inverts the signals
+ * L293 H-bridge connects to only 2 microcontroller pins, inverts the signals
  * received, and delivers the 4 (2 plus 2 inverted ones) output signals
- * required for driving a stepper motor. Similarly the Arduino motor shields
+ * required for driving a stepper motor. Similarly the Arduino motor shield's
  * 2 direction pins may be used.
  *
  * The sequence of control signals for 5 phase, 5 control wires is as follows:
@@ -71,7 +75,7 @@
  *    3  0  1  0  1
  *    4  1  0  0  1
  *
- * The sequence of controls signals for 2 control wires is as follows
+ * The sequence of control signals for 2 control wires is as follows
  * (columns C1 and C2 from above):
  *
  * Step C0 C1
@@ -82,20 +86,20 @@
  *
  * The circuits can be found at
  *
- * http://www.arduino.cc/en/Tutorial/Stepper
+ * https://docs.arduino.cc/learn/electronics/stepper-motors#circuit
  */
 
 #include "Arduino.h"
-//Çì´õ ¿¬°á º¯°æ
-#include "StepperMulti5.h"
+//í—¤ë” ì—°ê²° ë³€ê²½
+#include "StepperAsync5.h"
 
 /*
  * two-wire constructor.
  * Sets which wires should control the motor.
  */
-StepperMulti5::StepperMulti5(int number_of_steps, int motor_pin_1, int motor_pin_2)
+StepperAsync5::StepperAsync5(int number_of_steps, int motor_pin_1, int motor_pin_2)
 {
-  //½ºÅÇÃÊ±âÈ­
+  //ìŠ¤íƒ­ì´ˆê¸°í™”
   this->steps_left = 0;
 
   this->step_number = 0;    // which step the motor is on
@@ -125,10 +129,10 @@ StepperMulti5::StepperMulti5(int number_of_steps, int motor_pin_1, int motor_pin
  *   constructor for four-pin version
  *   Sets which wires should control the motor.
  */
-StepperMulti5::StepperMulti5(int number_of_steps, int motor_pin_1, int motor_pin_2,
-                                      int motor_pin_3, int motor_pin_4)
+StepperAsync5::StepperAsync5(int number_of_steps, int motor_pin_1, int motor_pin_2,
+                                                int motor_pin_3, int motor_pin_4)
 {
-  //½ºÅÇÃÊ±âÈ­
+  //ìŠ¤íƒ­ì´ˆê¸°í™”
   this->steps_left = 0;
 
   this->step_number = 0;    // which step the motor is on
@@ -159,12 +163,12 @@ StepperMulti5::StepperMulti5(int number_of_steps, int motor_pin_1, int motor_pin
  *   constructor for five phase motor with five wires
  *   Sets which wires should control the motor.
  */
-StepperMulti5::StepperMulti5(int number_of_steps, int motor_pin_1, int motor_pin_2,
-                                      int motor_pin_3, int motor_pin_4,
-                                      int motor_pin_5)
+StepperAsync5::StepperAsync5(int number_of_steps, int motor_pin_1, int motor_pin_2,
+                                                int motor_pin_3, int motor_pin_4,
+                                                int motor_pin_5)
 {
 
-  //½ºÅÇÃÊ±âÈ­
+  //ìŠ¤íƒ­ì´ˆê¸°í™”
   this->steps_left = 0;
 
   this->step_number = 0;    // which step the motor is on
@@ -193,7 +197,7 @@ StepperMulti5::StepperMulti5(int number_of_steps, int motor_pin_1, int motor_pin
 /*
  * Sets the speed in revs per minute
  */
-void StepperMulti5::setSpeed(long whatSpeed)
+void StepperAsync5::setSpeed(long whatSpeed)
 {
   this->step_delay = 60L * 1000L * 1000L / this->number_of_steps / whatSpeed;
 }
@@ -202,9 +206,9 @@ void StepperMulti5::setSpeed(long whatSpeed)
  * Moves the motor steps_to_move steps.  If the number is negative,
  * the motor moves in the reverse direction.
  */
-void StepperMulti5::setStep(int steps_to_move)
+void StepperAsync5::setStep(int steps_to_move)
 {
-  //Àü¿ª ¹ø¼ö¿¡ ½ºÅÇÀ» ÀúÀåÇÑ´Ù.
+  //ì „ì—­ ë²ˆìˆ˜ì— ìŠ¤íƒ­ì„ ì €ìž¥í•œë‹¤.
   this->steps_left = abs(steps_to_move);  // how many steps to take
 
   // determine direction based on whether steps_to_mode is + or -:
@@ -212,18 +216,18 @@ void StepperMulti5::setStep(int steps_to_move)
   if (steps_to_move < 0) { this->direction = 0; }
 
 
-  //½ºÅÇÀ» ÁøÇà ÇÑ´Ù.
+  //ìŠ¤íƒ­ì„ ì§„í–‰ í•œë‹¤.
   moveStep();
 }
 
 /*
- * loop¾È¿¡¼­ È£ÃâÇÏ¿© ½ºÅÇ¸ðÅÍÀÇ µ¿ÀÛÀ» Á¦¾îÇÑ´Ù.
+ * loopì•ˆì—ì„œ í˜¸ì¶œí•˜ì—¬ ìŠ¤íƒ­ëª¨í„°ì˜ ë™ìž‘ì„ ì œì–´í•œë‹¤.
 */
-void StepperMulti5::moveStep()
+void StepperAsync5::moveStep()
 {
 	// decrement the number of steps, moving one step each time:
 	// while -> if
-	// 'while'ÀÇ ¿ªÇÒÀ» 'loop'°¡ ´ë½Å ÇØÁÖ±â ¶§¹®¿¡ ¿©±â¼­´Â 'while'°¡ ÇÊ¿ä¾ø´Ù.
+	// 'while'ì˜ ì—­í• ì„ 'loop'ê°€ ëŒ€ì‹  í•´ì£¼ê¸° ë•Œë¬¸ì— ì—¬ê¸°ì„œëŠ” 'while'ê°€ í•„ìš”ì—†ë‹¤.
 	//while (steps_left > 0)
 	if(this->steps_left > 0)
 	{
@@ -250,7 +254,7 @@ void StepperMulti5::moveStep()
 				this->step_number--;
 			}
 			
-			//½ºÅÇ ³²Àº °³¼ö¸¦ Àü¿ªº¯¼ö¿¡ ÀúÀåÇÑ´Ù.
+			//ìŠ¤íƒ­ ë‚¨ì€ ê°œìˆ˜ë¥¼ ì „ì—­ë³€ìˆ˜ì— ì €ìž¥í•œë‹¤.
 			this->steps_left--;// decrement the steps left:
 			// step the motor to step number 0, 1, ..., {3 or 10}
 			if (this->pin_count == 5)
@@ -265,7 +269,7 @@ void StepperMulti5::moveStep()
 /*
  * Moves the motor forward or backwards.
  */
-void StepperMulti5::stepMotor(int thisStep)
+void StepperAsync5::stepMotor(int thisStep)
 {
   if (this->pin_count == 2) {
     switch (thisStep) {
@@ -395,7 +399,7 @@ void StepperMulti5::stepMotor(int thisStep)
 /*
   version() returns the version of the library:
 */
-int StepperMulti5::version(void)
+int StepperAsync5::version(void)
 {
   return 5;
 }
