@@ -1,7 +1,7 @@
-#include <StepperMulti5.h>
+#include <StepperAsync5.h>
 
-StepperMulti5 stepper(200, 12, 11, 10, 9);
-StepperMulti5 stepper2(200, 7, 6, 5, 4);
+StepperAsync5 stepper(200, 12, 11, 10, 9);
+StepperAsync5 stepper2(200, 7, 6, 5, 4);
 
 void setup() 
 {
