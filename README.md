@@ -22,17 +22,17 @@ The existing 'Stepper' library operates synchronously, so other operations canno
 
 ## Overview
 
-- 'Stepper' 라이브러리와 동일한 선언 구조
-- 'Stepper' 라이브러리와 동일한 사용 방법
-- 메인 'loop'를 멈추지 않고 동작하여 비동기로 동작
-- 여러 개의 스텝모터나 다른 동작을 동시에 할 수 있음
+- Same declaration structure as 'Stepper' library
+- Same usage as 'Stepper' library
+- Operate asynchronously by operating without stopping the main 'loop'
+- Multiple stepper motors or other operations can be performed simultaneously
 
 
 ## Getting Started
 
 - Download the file from [Releases](https://github.com/dang-gun/Arduino_StepperAsync5/releases)  or
 - Create 'StepperAsync5.h' and 'StepperAsync5.cpp' and copy the source.
-- (Arduino IDE 2.x 이상) 'Arduino IDE'에서 'Sketch > Include Library > Manage Libraries...'를 선택하여 'Library Manager'를 열어 'Stepper Async 5'를 설치해 줍니다.
+- (Arduino IDE 2.x or later) Select 'Sketch > Include Library > Manage Libraries...' in 'Arduino IDE' to open 'Library Manager' and install 'Stepper Async 5'.
 
 Follow the instructions below to install.
 
@@ -42,15 +42,15 @@ Tested on Arduino 1.8.19
 
 ### Installing
 
-('Library Manager'로 설치하였으면 이 과정은 필요 없습니다.)
+(This process is unnecessary if you have installed with 'Library Manager'.)
 
 Create 'StepperAsync5' folder in 'libraries' folder of Arduino IDE
 
 Insert 'StepperAsync5.h', 'StepperAsync5.cpp'.
 
-![Arduino_ButtonClickCheck_001](https://github.com/dang-gun/Arduino_ButtonClickCheck/assets/22692763/7f5401db-c170-4dd0-a4ab-208830573e62)
+![StepperAsync5_001](https://github.com/dang-gun/Arduino_StepperAsync5/assets/22692763/6cd33ce6-0697-4799-ab8d-5741e268e29a)
 
-Launch the Arduino IDE and add the following code.
+You can use 'StepperAsync5' by running 'Arduino IDE' and adding the following code.
 
 
 ```
@@ -108,17 +108,19 @@ void loop()
 
 Name|Description
 ---|---|
-ButtonClickCheck(int nButtonUpLevel)|A library for button judgment<br />@param nButtonUpLevel The judgment value when the button is not pressed. LOW or HIGH
-ButtonClickCheck(uint8_t uintPin, int nButtonUpLevel)|Library for judging buttons (specifying which pins to use)<br />@param uintPin pre-assign pins.<br />@param nButtonUpLevel Judgment value when the button is not pressed. LOW or HIGH
+StepperAsync5(int number_of_steps, int motor_pin_1, int motor_pin_2)|Generator used for 2-wire stepper motor<br />@param number_of_steps  the number of steps in one revolution of your motor.<br />@param motor_pin_1 Pin number 1 connected to the motor<br />@param motor_pin_2 Pin number 2 connected to the motor
+StepperAsync5(int number_of_steps, int motor_pin_1, int motor_pin_2, int motor_pin_3, int motor_pin_4)|Generator used for 4-wire and 6-wire stepper motors<br />@param number_of_steps  the number of steps in one revolution of your motor.<br />@param motor_pin_1 Pin number 1 connected to the motor<br />@param motor_pin_2 Pin number 2 connected to the motor<br />@param motor_pin_3 Pin number 3 connected to the motor<br />@param motor_pin_4 Pin number 4 connected to the motor
+StepperAsync5(int number_of_steps, int motor_pin_1, int motor_pin_2, int motor_pin_3, int motor_pin_4, int motor_pin_5)|Generator used for 8-wire stepper motor<br />@param number_of_steps  the number of steps in one revolution of your motor.<br />@param motor_pin_1 Pin number 1 connected to the motor<br />@param motor_pin_2 Pin number 2 connected to the motor<br />@param motor_pin_3 Pin number 3 connected to the motor<br />@param motor_pin_4 Pin number 4 connected to the motor<br />@param motor_pin_5 Pin number 5 connected to the motor
 &nbsp;|&nbsp; 
-int ClickCheck()|Read the value of the stored pin number to determine the click information.<br />@return 1=Up, 2=Down, 3=First Down, 4=First Up<br /><br />1=Up : The button is not pressed  <br />2=Down: The button is pressed  <br />3=First Down: The state where the button changed from Up to Down (output only once when changed)  <br />4=First Up: The state where the button changed from Down to Up (output only once when changed)
-int ClickCheck(int nDigitalRead)|Read the delivered value to determine the click information.<br />@param nDigitalRead Input digital value (passed value)<br />@return 1=Up, 2=Down, 3=First Down, 4=First Up<br /><br />1=Up : The button is not pressed  <br />2=Down: The button is pressed  <br />3=First Down: The state where the button changed from Up to Down (output only once when changed)  <br />4=First Up: The state where the button changed from Down to Up (output only once when changed)
-BtnPush2Set(bool bBtnPush2Value)|Set the existing state value 'bBtnPush2' to a desired value.<br />@param bBtnPush2Value Data to store in the existing state value. on=true, off=false
+void setSpeed(long whatSpeed)|This function sets the motor speed in rotations per minute (RPMs).<br />@param whatSpeed the speed at which the motor should turn in rotations per minute
+void setStep(int number_of_steps)|Commands the motor to turn by a set number of steps.<br />A function that corresponds to 'stop()' in the 'Stepper' library, but does not rotate directly.<br />'moveStep()' must be called to rotate.<br />@param number_of_steps the number of steps to turn the motor. Positive integer to turn one direction, negative integer to turn the other.
+void moveStep()|Rotate by the set number of steps.<br />You must call this method inside 'loop()'.
+void version()|Print the baseline version of this library.<br />Libraries are separated according to the standard version, so this library is fixed to '5'.
 
 ## Update history
 
 #### 2023-06-04 : 
-- Renamed 'StepperMulti5' to 'StepperAsync5'
+- Renamed '[StepperMulti5](https://blog.danggun.net/7645)' to 'StepperAsync5'
 
 
 ## Contributing
@@ -138,6 +140,7 @@ A list of non-updating contributors can be found at [contributors](https://githu
 
 
 == 'Stepper' library ==
+
 Copyright (c) Arduino LLC. All right reserved.<br />
 Copyright (c) Sebastian Gassner. All right reserved.<br />
 Copyright (c) Noah Shibley. All right reserved.<br />

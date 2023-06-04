@@ -1,8 +1,8 @@
 # Stepper Async 5 (Library for Arduino)
 
-This is a library that modifies the Arduino 'Stepper' library to drive a step motor asynchronously.
+아두이노 'Stepper' 라이브러리를 수정하여 스텝 모터를 비동기식으로 구동할 수 있게 해주는 라이브러입니다.
 
-Detailed explanation (Korean) : [[Arduino] StepperAsync5 - 비동기 스탭 모터 라이브러리](https://blog.danggun.net/7268)
+상세한 설명 (Korean) : [[Arduino] StepperAsync5 - 비동기 스탭 모터 라이브러리](https://blog.danggun.net/7268)
 
 <br />
 The existing 'Stepper' library operates synchronously, so other operations cannot be performed while the stepper motor is operating. This library corrects these disadvantages and allows other operations while the stepper motor is running.
@@ -48,9 +48,9 @@ Arduino IDE 1.8.19에서 테스트 됩
 
 2. 'StepperAsync5.h', 'StepperAsync5.cpp'를 넣어줍니다.
 
-![Arduino_ButtonClickCheck_001](https://github.com/dang-gun/Arduino_ButtonClickCheck/assets/22692763/7f5401db-c170-4dd0-a4ab-208830573e62)
+![StepperAsync5_001](https://github.com/dang-gun/Arduino_StepperAsync5/assets/22692763/6cd33ce6-0697-4799-ab8d-5741e268e29a)
 
-'Arduino IDE'를 실행하고 다음 코드를 추가합니다.
+'Arduino IDE'를 실행하고 다음 코드를 추가하여 'StepperAsync5'를 사용할 수 있습니다.
 
 
 ```
@@ -108,17 +108,19 @@ void loop()
 
 Name|Description
 ---|---|
-ButtonClickCheck(int nButtonUpLevel)|A library for button judgment<br />@param nButtonUpLevel The judgment value when the button is not pressed. LOW or HIGH
-ButtonClickCheck(uint8_t uintPin, int nButtonUpLevel)|Library for judging buttons (specifying which pins to use)<br />@param uintPin pre-assign pins.<br />@param nButtonUpLevel Judgment value when the button is not pressed. LOW or HIGH
+StepperAsync5(int number_of_steps, int motor_pin_1, int motor_pin_2)|2선식 스텝모터에 사용하는 생성자<br />@param number_of_steps 모터가 1회전 하는데 필요한 스탭 숫자<br />@param motor_pin_1 모터에 연결된 핀 번호1<br />@param motor_pin_2 모터에 연결된 핀 번호2
+StepperAsync5(int number_of_steps, int motor_pin_1, int motor_pin_2, int motor_pin_3, int motor_pin_4)|4선, 6선식 스텝모터에 사용하는 생성자<br />@param number_of_steps 모터가 1회전 하는데 필요한 스탭 숫자<br />@param motor_pin_1 모터에 연결된 핀 번호1<br />@param motor_pin_2 모터에 연결된 핀 번호2<br />@param motor_pin_3 모터에 연결된 핀 번호3<br />@param motor_pin_4 모터에 연결된 핀 번호4
+StepperAsync5(int number_of_steps, int motor_pin_1, int motor_pin_2, int motor_pin_3, int motor_pin_4, int motor_pin_5)|8선식 스텝모터에 사용하는 생성자<br />@param number_of_steps 모터가 1회전 하는데 필요한 스탭 숫자<br />@param motor_pin_1 모터에 연결된 핀 번호1<br />@param motor_pin_2 모터에 연결된 핀 번호2<br />@param motor_pin_3 모터에 연결된 핀 번호3<br />@param motor_pin_4 모터에 연결된 핀 번호4<br />@param motor_pin_5 모터에 연결된 핀 번호5
 &nbsp;|&nbsp; 
-int ClickCheck()|Read the value of the stored pin number to determine the click information.<br />@return 1=Up, 2=Down, 3=First Down, 4=First Up<br /><br />1=Up : The button is not pressed  <br />2=Down: The button is pressed  <br />3=First Down: The state where the button changed from Up to Down (output only once when changed)  <br />4=First Up: The state where the button changed from Down to Up (output only once when changed)
-int ClickCheck(int nDigitalRead)|Read the delivered value to determine the click information.<br />@param nDigitalRead Input digital value (passed value)<br />@return 1=Up, 2=Down, 3=First Down, 4=First Up<br /><br />1=Up : The button is not pressed  <br />2=Down: The button is pressed  <br />3=First Down: The state where the button changed from Up to Down (output only once when changed)  <br />4=First Up: The state where the button changed from Down to Up (output only once when changed)
-BtnPush2Set(bool bBtnPush2Value)|Set the existing state value 'bBtnPush2' to a desired value.<br />@param bBtnPush2Value Data to store in the existing state value. on=true, off=false
+void setSpeed(long whatSpeed)|모터의 분당 회전수(RPM)을 설정함.<br />@param whatSpeed 모터가 분당 회전해야 하는 속도
+void setStep(int number_of_steps)|모터를 설정된 단계 수(steps) 만큼 돌리라고 명령한다.<br />'Stepper'라이브러리의 'stop()'에 대응하는 함수지만 직접 회전시키진 안습니다.<br />'moveStep()'가 호출되어야 회전합니다.<br />@param number_of_steps 모터를 돌리는 단계 수. 정반향으로 돌리려면 양수, 반대방향으로 돌리려면 음수를 넣는다.
+void moveStep()|설정된 단계 수(steps)만큼 회전시킨다.<br />반듯이 'loop()'안에서 이 메소드를 호출해야 한다.
+void version()|이 라이브러리의 기준 버전을 출력한다.<br />기준버전에 따라 라이브러리를 분리하고 있어서 이 라이브러리는 '5'고정입니다.
 
 ## 수정 이력
 
 #### 2023-06-04 : 
-- 이름을 'StepperMulti5'에서 'StepperAsync5'로 변경함
+- 이름을 '[StepperMulti5](https://blog.danggun.net/7645)'에서 'StepperAsync5'로 변경함
 
 
 ## 기여 방법
@@ -138,6 +140,7 @@ BtnPush2Set(bool bBtnPush2Value)|Set the existing state value 'bBtnPush2' to a d
 
 
 == 'Stepper' library ==
+
 Copyright (c) Arduino LLC. All right reserved.<br />
 Copyright (c) Sebastian Gassner. All right reserved.<br />
 Copyright (c) Noah Shibley. All right reserved.<br />
