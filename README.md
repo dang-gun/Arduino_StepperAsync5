@@ -5,7 +5,8 @@ This is a library that modifies the Arduino 'Stepper' library to drive a step mo
 Detailed explanation (Korean) : [[Arduino] StepperAsync5 - 비동기 스탭 모터 라이브러리](https://blog.danggun.net/7268)
 
 <br />
-The existing 'Stepper' library operates synchronously, so other operations cannot be performed while the stepper motor is operating. This library corrects these disadvantages and allows other operations while the stepper motor is running.
+The existing 'Stepper' library operates synchronously, so other operations cannot be performed while the stepper motor is operating.<br />
+This library corrects these disadvantages and allows other operations while the stepper motor is running.
 
 [![설명영상](https://img.youtube.com/vi/fQSO-O-tE_c/0.jpg)](https://youtu.be/fQSO-O-tE_c?t=0s)
 
@@ -100,9 +101,8 @@ void loop()
 }
 ```
 
-![ButtonClickCheck_001_001](https://github.com/dang-gun/Arduino_ButtonClickCheck/assets/22692763/7b9c1dce-d523-4f1e-81da-683c7d5de399)  
+![StepperAsync5_002](https://github.com/dang-gun/Arduino_StepperAsync5/assets/22692763/ffb3d3ce-9080-45de-96bb-59cd4db5b231)
 
-![ButtonClickCheck_001_003](https://github.com/dang-gun/Arduino_ButtonClickCheck/assets/22692763/6ed0a0a9-4a79-429b-91c5-dd5e76fbfb1b)
 
 ## Document
 
