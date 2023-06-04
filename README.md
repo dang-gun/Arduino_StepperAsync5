@@ -45,9 +45,9 @@ Tested on Arduino 1.8.19
 
 (This process is unnecessary if you have installed with 'Library Manager'.)
 
-Create 'StepperAsync5' folder in 'libraries' folder of Arduino IDE
+1. Create 'StepperAsync5' folder in 'libraries' folder of Arduino IDE
 
-Insert 'StepperAsync5.h', 'StepperAsync5.cpp'.
+2. Insert 'StepperAsync5.h', 'StepperAsync5.cpp'.
 
 ![StepperAsync5_001](https://github.com/dang-gun/Arduino_StepperAsync5/assets/22692763/6cd33ce6-0697-4799-ab8d-5741e268e29a)
 
