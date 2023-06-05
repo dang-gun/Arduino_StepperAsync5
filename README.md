@@ -8,7 +8,6 @@ Detailed explanation (Korean) : [[Arduino] StepperAsync5 - 비동기 스탭 모�
 The existing 'Stepper' library operates synchronously, so other operations cannot be performed while the stepper motor is operating.<br />
 This library corrects these disadvantages and allows other operations while the stepper motor is running.
 
-[![설명영상](https://img.youtube.com/vi/fQSO-O-tE_c/0.jpg)](https://youtu.be/fQSO-O-tE_c?t=0s)
 
 ## Index
   - [Overview](#overview) 
