@@ -133,6 +133,9 @@ MoveOnIs|지금 모터가 진행 중인지 여부<br />동작 중=true, 동작 �
 
 ## 수정 이력
 
+#### 2023-06-07 : 
+- MoveOnIs 기능 추가
+
 #### 2023-06-04 : 
 - 이름을 '[StepperMulti5](https://blog.danggun.net/7645)'에서 'StepperAsync5'로 변경함
 
