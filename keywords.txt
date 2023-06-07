@@ -22,7 +22,7 @@ version	KEYWORD2
 #######################################
 direction	KEYWORD2
 speed	KEYWORD2
-
+MoveOnIs KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
