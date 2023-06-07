@@ -65,38 +65,51 @@ Put the code below in your sketch to test it.
 ```
 #include <StepperAsync5.h>
 
+int LED1 = A0;
+ 
 StepperAsync5 stepper(200, 12, 11, 10, 9);
 StepperAsync5 stepper2(200, 7, 6, 5, 4);
-
+ 
 void setup() 
 {
   Serial.begin(9600);
+
+  pinMode(LED1, OUTPUT);
+  
   stepper.setSpeed(30);
   stepper2.setSpeed(60);
 }
-
+ 
 void loop() 
 {
   if (Serial.available())
   {
     int steps = Serial.parseInt();
-
+ 
     if(steps != 0)
     {
+      digitalWrite(LED1, HIGH);
       stepper.setStep(steps);
+      digitalWrite(LED1, LOW);
       stepper2.setStep(steps);
+      digitalWrite(LED1, HIGH);
       //stepper.setStep(200);
       //stepper2.setStep(200);
-  
+ 
       Serial.print("steps : ");
       Serial.println(steps); 
+      delay(100);
+      digitalWrite(LED1, LOW);
     }
-    
+ 
   }
   
   stepper.moveStep();
   stepper2.moveStep();
-
+  //Serial.print("Is Move - stepper : ");
+  //Serial.print(stepper.MoveOnIs);
+  //Serial.print(", stepper2 : ");
+  //Serial.println(stepper2.MoveOnIs);
 }
 ```
 
@@ -115,6 +128,7 @@ void setSpeed(long whatSpeed)|This function sets the motor speed in rotations pe
 void setStep(int number_of_steps)|Commands the motor to turn by a set number of steps.<br />A function that corresponds to 'stop()' in the 'Stepper' library, but does not rotate directly.<br />'moveStep()' must be called to rotate.<br />@param number_of_steps the number of steps to turn the motor. Positive integer to turn one direction, negative integer to turn the other.
 void moveStep()|Rotate by the set number of steps.<br />You must call this method inside 'loop()'.
 void version()|Print the baseline version of this library.<br />Libraries are separated according to the standard version, so this library is fixed to '5'.
+MoveOnIs|Whether the motor is running now or not<br />moving=true, if not moving=false
 
 ## Update history
 
