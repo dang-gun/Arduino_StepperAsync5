@@ -132,6 +132,9 @@ MoveOnIs|Whether the motor is running now or not<br />moving=true, if not moving
 
 ## Update history
 
+#### 2023-06-07 : 
+- Add 'MoveOnIs'
+- 
 #### 2023-06-04 : 
 - Renamed '[StepperMulti5](https://blog.danggun.net/7645)' to 'StepperAsync5'
 
