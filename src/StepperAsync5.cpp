@@ -231,6 +231,9 @@ void StepperAsync5::moveStep()
 	//while (steps_left > 0)
 	if(this->steps_left > 0)
 	{
+    //모터가 동작중임을 알림
+    this->MoveOnIs = true;
+
 		unsigned long now = micros();
 		// move only if the appropriate delay has passed:
 		if (now - this->last_step_time >= this->step_delay)
@@ -263,6 +266,11 @@ void StepperAsync5::moveStep()
 				stepMotor(this->step_number % 4);
 		}
 	}
+  else
+  {
+    //모터가 동작이 끝났음을 알림
+    this->MoveOnIs = false;
+  }
 }
 
 

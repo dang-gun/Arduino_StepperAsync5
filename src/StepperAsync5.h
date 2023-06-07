@@ -116,6 +116,8 @@ class StepperAsync5
 
     int version(void);
 
+    // 지금 모터가 진행중인지 여부
+    bool MoveOnIs;
   private:
     void stepMotor(int this_step);
 
