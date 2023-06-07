@@ -8,7 +8,6 @@
 기존의 'Stepper' 라이브러리는 동기식으로 동작하기 때문에 스테퍼 모터가 동작하는 동안에는 다른 동작을 할 수 없습니다.<br/>
 이 라이브러리는 이러한 단점을 수정하고 스테퍼 모터가 실행되는 동안 다른 작업을 할 수 있게 해줍니다.
 
-[![설명영상](https://img.youtube.com/vi/fQSO-O-tE_c/0.jpg)](https://youtu.be/fQSO-O-tE_c?t=0s)
 
 ## Index
   - [주요 기능](#overview) 
@@ -66,38 +65,51 @@ Arduino IDE 1.8.19에서 테스트 됩
 ```
 #include <StepperAsync5.h>
 
+int LED1 = A0;
+ 
 StepperAsync5 stepper(200, 12, 11, 10, 9);
 StepperAsync5 stepper2(200, 7, 6, 5, 4);
-
+ 
 void setup() 
 {
   Serial.begin(9600);
+
+  pinMode(LED1, OUTPUT);
+  
   stepper.setSpeed(30);
   stepper2.setSpeed(60);
 }
-
+ 
 void loop() 
 {
   if (Serial.available())
   {
     int steps = Serial.parseInt();
-
+ 
     if(steps != 0)
     {
+      digitalWrite(LED1, HIGH);
       stepper.setStep(steps);
+      digitalWrite(LED1, LOW);
       stepper2.setStep(steps);
+      digitalWrite(LED1, HIGH);
       //stepper.setStep(200);
       //stepper2.setStep(200);
-  
+ 
       Serial.print("steps : ");
       Serial.println(steps); 
+      delay(100);
+      digitalWrite(LED1, LOW);
     }
-    
+ 
   }
   
   stepper.moveStep();
   stepper2.moveStep();
-
+  //Serial.print("Is Move - stepper : ");
+  //Serial.print(stepper.MoveOnIs);
+  //Serial.print(", stepper2 : ");
+  //Serial.println(stepper2.MoveOnIs);
 }
 ```
 
@@ -117,6 +129,7 @@ void setSpeed(long whatSpeed)|모터의 분당 회전수(RPM)을 설정함.<br /
 void setStep(int number_of_steps)|모터를 설정된 단계 수(steps) 만큼 돌리라고 명령한다.<br />'Stepper'라이브러리의 'stop()'에 대응하는 함수지만 직접 회전시키진 안습니다.<br />'moveStep()'가 호출되어야 회전합니다.<br />@param number_of_steps 모터를 돌리는 단계 수. 정반향으로 돌리려면 양수, 반대방향으로 돌리려면 음수를 넣는다.
 void moveStep()|설정된 단계 수(steps)만큼 회전시킨다.<br />반듯이 'loop()'안에서 이 메소드를 호출해야 한다.
 void version()|이 라이브러리의 기준 버전을 출력한다.<br />기준버전에 따라 라이브러리를 분리하고 있어서 이 라이브러리는 '5'고정입니다.
+MoveOnIs|지금 모터가 진행 중인지 여부<br />동작 중=true, 동작 중이 아니면=false
 
 ## 수정 이력
 
