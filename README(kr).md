@@ -8,6 +8,8 @@
 기존의 'Stepper' 라이브러리는 동기식으로 동작하기 때문에 스테퍼 모터가 동작하는 동안에는 다른 동작을 할 수 없습니다.<br/>
 이 라이브러리는 이러한 단점을 수정하고 스테퍼 모터가 실행되는 동안 다른 작업을 할 수 있게 해줍니다.
 
+[![설명영상](https://img.youtube.com/vi/3QoW75Ham1A/0.jpg)](https://youtu.be/3QoW75Ham1A?t=0s)
+
 
 ## Index
   - [주요 기능](#overview) 
