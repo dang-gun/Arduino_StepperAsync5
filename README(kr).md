@@ -38,11 +38,11 @@
 
 아래 지침에 따라 설치해 주세요.
 
-### Prerequisites
+### 필요조건
 
-Arduino IDE 1.8.19에서 테스트 됩
+Arduino IDE 1.8.19이상에서 테스트 됨
 
-### Installing
+### 설치
 
 ('Library Manager'로 설치하였으면 이 과정은 필요 없습니다.)
 
