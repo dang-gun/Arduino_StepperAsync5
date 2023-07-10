@@ -2,7 +2,7 @@
 
 아두이노 'Stepper' 라이브러리를 수정하여 스텝 모터를 비동기식으로 구동할 수 있게 해주는 라이브러입니다.
 
-상세한 설명 (Korean) : [[Arduino] StepperAsync5 - 비동기 스탭 모터 라이브러리](https://blog.danggun.net/7268)
+상세한 설명 (Korean) : [[Arduino] StepperAsync5 - 비동기 스탭 모터 라이브러리](https://blog.danggun.net/11146)
 
 <br />
 기존의 'Stepper' 라이브러리는 동기식으로 동작하기 때문에 스테퍼 모터가 동작하는 동안에는 다른 동작을 할 수 없습니다.<br/>
