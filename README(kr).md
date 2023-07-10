@@ -12,8 +12,8 @@
 
 
 ## Index
-  - [주요 기능](#overview) 
-  - [시작 하기](#getting-started)
+  - [주요 기능](#주요-기능) 
+  - [시작 하기](#시작-하기)
   - [테스트 해보기](#running-the-tests)
   - [문서](#문서)
   - [수정 이력](#update-history)
